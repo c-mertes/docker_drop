@@ -40,7 +40,8 @@ ARG ASSEMBLY=
 
 # create user
 RUN useradd -d /drop -ms /bin/bash drop \
-    && chmod -R ugo+rwX /drop
+    && chmod -R ugo+rwX /drop \
+    && chmod ugo+rwX /opt/conda/envs/drop
 
 # setup bash with conda and locals (language pack)
 USER drop:drop

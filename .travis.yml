@@ -13,12 +13,11 @@ install:
     - travis_wait 40 docker build -t drop/drop .
 
 script:
-    - docker run -it -v "volDROP:/drop/" drop/drop drop demo
-    - docker run -it -v "volDROP:/drop/" drop/drop snakemake -n
-    - docker run -it -v "volDROP:/drop/" drop/drop snakemake aberrantExpression --cores 4
-    - docker run -it -v "volDROP:/drop/" drop/drop snakemake aberrantSplicing --cores 4
-    - docker run -it -v "volDROP:/drop/" drop/drop snakemake exportCounts --cores 4
-    - docker run -it -v "volDROP:/drop/" drop/drop snakemake mae --cores 4
-    - docker run -it -v "volDROP:/drop/" drop/drop snakemake --cores 4
-
+    - docker run -it -v "volDROP:/drop/analysis" drop/drop drop demo
+    - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake -n
+    - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake aberrantExpression --cores 4
+    - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake aberrantSplicing --cores 4
+    - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake exportCounts --cores 4
+    - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake mae --cores 4
+    - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake --cores 4
 
