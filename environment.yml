@@ -5,24 +5,21 @@ channels:
   - bioconda
 
 dependencies:
-    # core python
-    - python=>3.6
-    - pip
-    - git
+  # core python
+  - python=>3.8
+  - pip
+  - git
    
-    # main drop dependencies
-    - drop =0.9.1
-    - wbuild>=1.7.0
-    - snakemake>=5.5.2
-    - r-base>=4.0.0
-    - bioconductor-outrider
-    - bioconductor-fraser
-    - r-tmae
-    - gatk4=>4.0.4
-    - samtools>=1.7
-    - star>=2.7
-
-    # install the mafdb so it can be used within the docker image
-    - bioconductor-mafdb.gnomad.r2.1.hs37d5
-    - bioconductor-mafdb.gnomad.r2.1.grch38
-
+  # main drop dependencies
+  - drop>=1.0.1
+  - wbuild>=1.8
+  - snakemake>=5.5.2
+  - r-base>=4.0.3
+  - bioconductor-outrider>=1.8.0
+  - bioconductor-fraser>=1.2.0
+  - r-tmae
+  - gatk4=>4.0.4
+  - samtools>=1.7
+  - star>=2.7
+  - r-devtools
+  - r-biocmanager

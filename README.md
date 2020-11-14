@@ -26,7 +26,8 @@ I has all dependencies already preinstalled. Mainly:
 
 ```
 git clone git@github.com:c-mertes/docker_drop
-docker build . --network=host --build-arg DROP_VERSION=0.9.1 --tag mertes/drop:0.9.1 --tag mertes/drop:latest --tag mertes/drop
+cd docker_drop
+docker build . --network=host --tag mertes/drop:latest --tag mertes/drop
 ```
 
 ## Using the Docker image
