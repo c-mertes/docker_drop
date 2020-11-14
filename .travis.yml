@@ -10,7 +10,7 @@ cache:
         - $HOME/miniconda
 
 install:
-    - travis_wait 40 docker build -t drop/drop .
+    - docker build -t drop/drop .
 
 script:
     - docker run -it -v "volDROP:/drop/analysis" drop/drop drop demo
