@@ -15,8 +15,11 @@ install:
 script:
     - docker run -it -v "volDROP:/drop/analysis" drop/drop drop demo
     - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake -n
+    - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake /drop/analysis/Output/processed_data/aberrant_splicing/datasets/savedObjects/raw-fraser/rawCountsJ.h5 --cores 4
     - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake exportCounts --cores 4
+    - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake /drop/analysis/Output/processed_results/aberrant_expression/v29/outrider/import_exp/ods.Rds --cores 4
     - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake aberrantExpression --cores 4
+    - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake /drop/analysis/Output/processed_data/aberrant_splicing/datasets/savedObjects/fraser/hyper.done --cores 4
     - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake aberrantSplicing --cores 4
     - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake mae --cores 4
     - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake --cores 4
