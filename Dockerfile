@@ -17,13 +17,19 @@ RUN conda create -y -c conda-forge -c bioconda -n drop \
         "python>=3.8" \
         "wbuild>=1.8.0" \
         "bioconductor-fraser>=1.2.0" \
+        "samtools>=1.11" \
+        "bcftools>=1.11" \
+        "openssl>=1.1.1g" \
+    && conda remove --force -n drop drop bioconductor-bsgenome.hsapiens.ucsc.hg19 r-bh \
     && conda clean --all -y
 
 COPY environment.yml /tmp/
 RUN conda env update --prune -f /tmp/environment.yml \
-    && conda clean --all -y
+    && conda remove --force -n drop drop bioconductor-bsgenome.hsapiens.ucsc.hg19 r-bh \
+    && conda clean --all --yes
 
 # install newest DROP/FRASER/OUTRIDER version
+# The COMMIT HASH from github.com/gagneurlab/drop is used
 ARG DROP_COMMIT=0470011
 SHELL ["conda", "run", "-n", "drop", "/bin/bash", "-c"]
 RUN mkdir /tmp/gitrepos \
@@ -31,12 +37,16 @@ RUN mkdir /tmp/gitrepos \
     && git clone https://github.com/gagneurlab/drop \
     && cd drop \
     && git checkout $DROP_COMMIT \
+    && sed "/BSgenome/d" -i drop/requirementsR.txt \
     && pip install . \
     && R -e "BiocManager::install(c(\"gagneurlab/OUTRIDER\", \"c-mertes/FRASER\"), update=FALSE)" \
     && cd / \
-    && rm -rf /tmp/gitrepos
+    && rm -rf /tmp/gitrepos /opt/conda/envs/drop/lib/R/library/BH
 
-ARG ASSEMBLY=
+# currently we have the option hg19 and hg38
+ARG ASSEMBLY=hg19
+COPY install_assembly.R /tmp/
+RUN Rscript /tmp/install_assembly.R $ASSEMBLY 
 
 # create user
 RUN useradd -d /drop -ms /bin/bash drop \

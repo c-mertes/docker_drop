@@ -10,7 +10,7 @@ Further information can be optioned from the [DROP documentation](https://gagneu
 
 The docker image uses conda to manage the environment and installs all its dependencies through `bioconda` and `conda-forge`. 
 
-I has all dependencies already preinstalled. Mainly:
+It has all dependencies already preinstalled. Mainly:
 
 * [DROP](https://github.com/gagneurlab/drop)
 * [OUTRIDER](https://github.com/gagneurlab/OUTRIDER)
@@ -21,6 +21,19 @@ I has all dependencies already preinstalled. Mainly:
 * [GATK](https://gatk.broadinstitute.org/hc/en-us)
 * [bcftools](http://samtools.github.io/bcftools/bcftools.html)
 
+To keep the image small there are three flavours (tag) of the image:
+* **latest**: a plain DROP installation
+* **hg19**: the DROP installation for use with the HG19 assembly
+* **hg38**: the DROP installation for use with the HG38 assembly
+
+If you are concerned about image size, you can mount a prebuild of the R package into the image.
+For `HG19` you can do this by running:
+
+```
+docker run --rm -ti \
+    -v "<path/to/your/prebuild/package>:/opt/conda/envs/drop/lib/R/library/BSgenome.Hsapiens.UCSC.hg19" \
+    mertes/drop:latest
+```
 
 ## Building the Docker image
 

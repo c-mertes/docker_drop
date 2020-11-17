@@ -8,18 +8,19 @@ dependencies:
   # core python
   - python=>3.8
   - pip
-  - git
    
   # main drop dependencies
   - drop>=1.0.1
   - wbuild>=1.8
-  - snakemake>=5.5.2
+  - snakemake>=5.28
   - r-base>=4.0.3
   - bioconductor-outrider>=1.8.0
   - bioconductor-fraser>=1.2.0
   - r-tmae
   - gatk4=>4.0.4
-  - samtools>=1.7
+  - samtools>=1.11
+  - bcftools>=1.11
+  - openssl>=1.1.1g
   - star>=2.7
   - r-devtools
   - r-biocmanager
