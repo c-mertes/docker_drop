@@ -22,5 +22,5 @@ script:
     - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake /drop/analysis/Output/processed_data/aberrant_splicing/datasets/savedObjects/fraser/hyper.done --cores 4
 #    - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake aberrantSplicing --cores 4
     - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake mae --cores 4
-    - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake --cores 4
+#    - docker run -it -v "volDROP:/drop/analysis" drop/drop snakemake --cores 4
 
